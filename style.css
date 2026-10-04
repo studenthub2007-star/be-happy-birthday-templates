@@ -1192,3 +1192,89 @@ footer {
         padding: 25px 20px;
     }
 }
+/* ===== FORM SUCCESS MESSAGE ===== */
+
+.form-success {
+    display: none;
+    width: min(650px, 90%);
+    margin: 35px auto 0;
+    padding: 45px 30px;
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 79, 145, 0.25);
+    border-radius: 25px;
+
+    text-align: center;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(15px);
+}
+
+.form-success.show {
+    display: block;
+    animation: successAppear 0.5s ease;
+}
+
+.success-heart {
+    font-size: 55px;
+    margin-bottom: 15px;
+    animation: successHeart 1.2s infinite;
+}
+
+.form-success h3 {
+    font-size: 30px;
+    margin-bottom: 12px;
+    color: white;
+}
+
+.form-success p {
+    color: #aaa;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.form-success button {
+    border: none;
+    padding: 13px 24px;
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #ff4f91, #ff2f70);
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.form-success button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 79, 145, 0.35);
+}
+
+@keyframes successHeart {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+@keyframes successAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
