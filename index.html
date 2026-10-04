@@ -636,10 +636,11 @@ You are truly special to me. ❤️
     </p>
 
     <form
-        action="https://formspree.io/f/xyekgvpl"
-        method="POST"
-        class="contact-form"
-    >
+    id="contactForm"
+    action="https://formspree.io/f/xyekgvpl"
+    method="POST"
+    class="contact-form"
+>
 
         <div class="form-group">
             <label>Your Name</label>
@@ -711,6 +712,23 @@ You are truly special to me. ❤️
         </button>
 
     </form>
+    <div id="formSuccess" class="form-success">
+
+    <div class="success-heart">❤️</div>
+
+    <h3>Thank You! 💕</h3>
+
+    <p>
+        Your enquiry has been received successfully.
+        <br>
+        BE HAPPY will contact you soon.
+    </p>
+
+    <button type="button" onclick="resetContactForm()">
+        Send Another Enquiry
+    </button>
+
+</div>
 
     <div class="contact-buttons">
 
