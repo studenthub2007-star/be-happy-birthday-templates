@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Heart Template</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- =================================
+     BACKGROUND MUSIC
+================================= -->
+
+<audio
+    id="backgroundMusic"
+    loop
+    preload="auto">
+
+    <source
+        src="music/love-song.mp3"
+        type="audio/mpeg">
+
+</audio>
+
+
+<!-- =================================
+     MUSIC BUTTON
+================================= -->
+
+<button
+    id="musicButton"
+    class="music-button"
+    onclick="toggleMusic()">
+
+    <span id="musicIcon">🔇</span>
+
+</button>
+    <!-- =========================
+         HEART INTRO
+    ========================== -->
+
+    <section id="heartIntro">
+
+        <div class="heart-container">
+
+            <svg
+                class="heart-svg"
+                viewBox="0 0 500 500"
+                xmlns="http://www.w3.org/2000/svg">
+
+                <!-- Main heart outline -->
+                <path
+                    id="heartPath"
+                    d="
+                    M250 400
+                    C220 370 80 285 80 175
+                    C80 105 135 70 190 70
+                    C225 70 250 90 250 120
+                    C250 90 275 70 310 70
+                    C365 70 420 105 420 175
+                    C420 285 280 370 250 400
+                    Z
+                    "
+                />
+
+            </svg>
+
+            <!-- Small glowing particles -->
+
+            <div class="particle p1"></div>
+            <div class="particle p2"></div>
+            <div class="particle p3"></div>
+            <div class="particle p4"></div>
+            <div class="particle p5"></div>
+            <div class="particle p6"></div>
+
+            <div class="heart-text">
+                <span>Made</span>
+                <span>with</span>
+                <span>♥</span>
+            </div>
+
+        </div>
+
+        <div class="intro-message">
+            A little something from my heart...
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN WEB PAGE
+    ========================== -->
+
+    <main id="mainPage">
+
+        <div class="page-content">
+
+            <div class="glow"></div>
+
+            <h1>
+                Welcome ❤️
+            </h1>
+
+            <p>
+                Something special is waiting for you...
+            </p>
+
+            <button onclick="openMessage()">
+                Open My Heart
+            </button>
+
+        </div>
+
+    </main>
+    <!-- =================================
+     FULL LOVE WEBSITE
+================================= -->
+
+<section id="loveWebsite">
+
+    <!-- HERO -->
+    <section class="hero-section">
+
+        <div class="hero-content">
+
+            <div class="hero-heart">♥</div>
+
+            <h1>For You</h1>
+
+            <p>
+                Some feelings are too beautiful
+                to be written in words.
+            </p>
+
+            <button class="scroll-button" onclick="scrollToMessage()">
+    ↓ Scroll down ↓
+</button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MESSAGE -->
+    <section class="message-section" id="messageSection">
+
+    <div class="message-wrapper">
+
+        <div class="message-label">
+            A LITTLE MESSAGE
+        </div>
+
+        <div class="message-heart">
+            ♥
+        </div>
+
+        <h2>
+            Something From My Heart
+        </h2>
+
+
+        <!-- ENVELOPE -->
+
+        <div
+            class="envelope-area"
+            id="envelopeArea"
+            onclick="openEnvelope()">
+
+            <div class="envelope">
+
+                <!-- Letter -->
+                <div class="letter">
+
+                    <div class="letter-content">
+
+                        <h3>My Dear ❤️</h3>
+
+                        <p>
+                            Some feelings are too beautiful
+                            to explain with words.
+                        </p>
+
+                        <p>
+                            So I made this little place
+                            just to keep a few beautiful
+                            memories and feelings.
+                        </p>
+
+                        <p>
+                            Every little moment matters.
+                            Every memory has a special place.
+                        </p>
+
+                        <div class="signature">
+                            With Love ❤️
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Envelope Back -->
+
+                <div class="envelope-back"></div>
+
+
+                <!-- Envelope Front -->
+
+                <div class="envelope-front"></div>
+
+
+                <!-- Envelope Flap -->
+
+                <div class="envelope-flap">
+
+                    <div class="flap-heart">
+                        ♥
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="envelope-hint"
+            id="envelopeHint">
+
+            Tap the envelope ❤️
+
+        </div>
+
+
+        <button
+            class="continue-button"
+            id="messageContinue"
+            onclick="scrollToMemories()">
+
+            Continue ↓
+
+        </button>
+
+    </div>
+
+</section>
+
+
+   <!-- =================================
+     MEMORY GALLERY
+================================= -->
+
+     MEMORY TIMELINE
+================================= -->
+
+<section class="memory-section" id="memories">
+
+    <div class="memory-heading">
+
+        <span>OUR STORY</span>
+
+        <h2>Our Memories</h2>
+
+        <p>
+            Three little moments,
+            a thousand beautiful feelings. ❤️
+        </p>
+
+    </div>
+
+
+    <div class="memory-timeline">
+
+
+        <!-- MEMORY 1 -->
+
+        <div class="timeline-item left">
+
+            <div class="timeline-dot">
+                ♥
+            </div>
+
+            <div
+                class="timeline-card"
+                onclick="openPhoto('images/photo1.jpg')">
+
+                <div class="timeline-photo">
+
+                    <img
+                        src="images/photo1.jpg"
+                        alt="Memory One">
+
+                    <div class="timeline-overlay">
+                        <span>♥</span>
+                        View Memory
+                    </div>
+
+                </div>
+
+                <div class="timeline-info">
+
+                    <small>
+                        MEMORY 01
+                    </small>
+
+                    <h3>
+                        The Beginning
+                    </h3>
+
+                    <p>
+                        Every beautiful story
+                        starts with one little moment.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEMORY 2 -->
+
+        <div class="timeline-item right">
+
+            <div class="timeline-dot">
+                ♥
+            </div>
+
+            <div
+                class="timeline-card"
+                onclick="openPhoto('images/photo2.jpg')">
+
+                <div class="timeline-photo">
+
+                    <img
+                        src="images/photo2.jpg"
+                        alt="Memory Two">
+
+                    <div class="timeline-overlay">
+                        <span>♥</span>
+                        View Memory
+                    </div>
+
+                </div>
+
+                <div class="timeline-info">
+
+                    <small>
+                        MEMORY 02
+                    </small>
+
+                    <h3>
+                        A Beautiful Moment
+                    </h3>
+
+                    <p>
+                        Some moments become memories
+                        without us even realizing it.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MEMORY 3 -->
+
+        <div class="timeline-item left">
+
+            <div class="timeline-dot">
+                ♥
+            </div>
+
+            <div
+                class="timeline-card"
+                onclick="openPhoto('images/photo3.jpg')">
+
+                <div class="timeline-photo">
+
+                    <img
+                        src="images/photo3.jpg"
+                        alt="Memory Three">
+
+                    <div class="timeline-overlay">
+                        <span>♥</span>
+                        View Memory
+                    </div>
+
+                </div>
+
+                <div class="timeline-info">
+
+                    <small>
+                        MEMORY 03
+                    </small>
+
+                    <h3>
+                        Forever Memory
+                    </h3>
+
+                    <p>
+                        And some memories are simply
+                        impossible to forget.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- Continue -->
+
+    <button
+        class="timeline-continue"
+        onclick="scrollToFinal()">
+
+        Continue Our Story
+        <span>↓</span>
+
+    </button>
+
+</section>
+
+
+<!-- =================================
+     FULLSCREEN PHOTO VIEWER
+================================= -->
+
+<div id="photoViewer">
+
+    <button
+        class="close-viewer"
+        onclick="closePhoto()">
+        ×
+    </button>
+
+    <div class="viewer-content">
+
+        <img
+            id="viewerImage"
+            src=""
+            alt="Full Memory">
+
+        <div class="viewer-heart">
+            ♥
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!-- FINAL -->
+    <!-- =================================
+     FINAL CINEMATIC SECTION
+================================= -->
+
+<section class="final-section" id="finalSection">
+
+    <!-- Background particles -->
+
+    <div class="final-particles">
+
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+
+    </div>
+
+
+    <div class="final-content">
+
+        <div class="final-small-text">
+            ONE LAST THING...
+        </div>
+
+
+        <!-- BIG HEART -->
+
+        <div class="final-heart-wrap">
+
+            <div class="final-heart">
+                ♥
+            </div>
+
+            <div class="heart-ring ring-one"></div>
+            <div class="heart-ring ring-two"></div>
+            <div class="heart-ring ring-three"></div>
+
+        </div>
+
+
+        <!-- FINAL MESSAGE -->
+
+        <div class="final-message">
+
+            <h2>
+                You Are Special
+            </h2>
+
+            <p>
+                Among all the moments,
+                memories and stories...
+            </p>
+
+            <p class="final-highlight">
+                You are my favorite one. ❤️
+            </p>
+
+        </div>
+
+
+        <div class="final-line"></div>
+
+
+        <div class="final-love">
+            Made with Love
+            <span>♥</span>
+        </div>
+
+
+        <div class="final-signature">
+            Forever & Always
+        </div>
+
+    </div>
+
+</section>
+
+</section>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

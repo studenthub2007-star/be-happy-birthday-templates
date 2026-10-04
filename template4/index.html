@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Template 4 ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!-- LOVE EFFECTS -->
+
+<div id="effectsLayer"></div>
+
+    <!-- Main Animation -->
+    <div class="scene">
+        
+        <!-- Code Rain -->
+        <canvas id="codeRain"></canvas>
+        <canvas id="heartCanvas"></canvas>
+
+        <!-- Center Heart -->
+        <div class="heart-container">
+            <div class="heart">♥</div>
+        </div>
+
+        <!-- Main Message -->
+        <div class="message">
+            <span>I</span>
+            <span>LOVE</span>
+            <span>YOU</span>
+        </div>
+
+    </div>
+    <!-- PERSONALIZED MESSAGE SCREEN -->
+
+<div class="message-screen" id="messageScreen">
+
+    <div class="message-card">
+
+        <div class="small-heart">♥</div>
+
+        <h1>For My Special Person</h1>
+
+        <p class="love-message">
+            Every moment with you is special ❤️
+        </p>
+
+        <p class="sub-message">
+            This little surprise is made just for you...
+        </p>
+
+        <button id="nextButton">
+            Continue ❤️
+        </button>
+
+    </div>
+
+</div>
+<!-- MAIN CONTENT -->
+
+<div class="main-page" id="mainPage">
+
+    <div class="main-content">
+
+
+        <div class="main-heart">♥</div>
+
+        <h1>Our Beautiful Story</h1>
+
+        <p class="intro-text">
+            A little collection of our memories ❤️
+        </p>
+        
+
+        <!-- Feature Cards -->
+
+        <div class="feature-grid">
+
+            <div class="feature-card" id="musicCard">
+
+    <div class="feature-icon">🎵</div>
+
+    <h2>Our Song</h2>
+
+    <p>Play our special song</p>
+
+</div>
+<!-- MUSIC PLAYER -->
+
+<div class="music-player" id="musicPlayer">
+
+    <div class="music-disc" id="musicDisc">
+        💿
+    </div>
+
+    <h2>Our Special Song ❤️</h2>
+
+    <p id="songStatus">Tap play to start</p>
+
+    <audio id="audioPlayer">
+        <source src="assets/music/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="playButton">
+        ▶ Play
+    </button>
+
+</div>
+
+           <div class="feature-card" id="galleryCard">
+
+    <div class="feature-icon">📸</div>
+
+    <h2>Our Memories</h2>
+
+    <p>Beautiful moments together</p>
+
+</div>
+<!-- PHOTO GALLERY -->
+
+<div class="gallery-section" id="gallerySection">
+
+    <h2>Our Memories ❤️</h2>
+
+    <p class="gallery-subtitle">
+        Every picture has a story.
+    </p>
+
+    <div class="gallery">
+
+        <div class="photo-card">
+            <img src="assets/images/photo1.jpg" alt="Memory 1">
+        </div>
+
+        <div class="photo-card">
+            <img src="assets/images/photo2.jpg" alt="Memory 2">
+        </div>
+
+        <div class="photo-card">
+            <img src="assets/images/photo3.jpg" alt="Memory 3">
+        </div>
+
+        <div class="photo-card">
+            <img src="assets/images/photo4.jpg" alt="Memory 4">
+        </div>
+
+    </div>
+
+</div>
+<!-- FULLSCREEN PHOTO VIEWER -->
+
+<div class="photo-viewer" id="photoViewer">
+
+    <button class="viewer-close" id="viewerClose">
+        ✕
+    </button>
+
+    <button class="viewer-prev" id="viewerPrev">
+        ❮
+    </button>
+
+    <div class="viewer-content">
+
+        <img
+            id="viewerImage"
+            src=""
+            alt="Full screen memory"
+        >
+
+        <p id="viewerCounter">
+            1 / 4
+        </p>
+
+    </div>
+
+    <button class="viewer-next" id="viewerNext">
+        ❯
+    </button>
+
+</div>
+
+           <div class="feature-card" id="videoCard">
+
+    <div class="feature-icon">🎥</div>
+
+    <h2>Our Videos</h2>
+
+    <p>Watch our special moments</p>
+
+</div>
+<!-- VIDEO GALLERY -->
+
+<div class="video-section" id="videoSection">
+
+    <h2>Our Videos 🎥</h2>
+
+    <p class="video-subtitle">
+        Our favorite moments in motion ❤️
+    </p>
+
+    <div class="video-grid">
+
+        <div class="video-card">
+
+            <video
+                src="assets/videos/video1.mp4"
+                controls
+                preload="metadata">
+            </video>
+
+            <h3>Our Memory 01</h3>
+
+        </div>
+
+
+        <div class="video-card">
+
+            <video
+                src="assets/videos/video2.mp4"
+                controls
+                preload="metadata">
+            </video>
+
+            <h3>Our Memory 02</h3>
+
+        </div>
+
+
+        <div class="video-card">
+
+            <video
+                src="assets/videos/video3.mp4"
+                controls
+                preload="metadata">
+            </video>
+
+            <h3>Our Memory 03</h3>
+
+        </div>
+
+    </div>
+
+</div>
+
+            <div class="feature-card" id="messageCard">
+
+    <div class="feature-icon">💌</div>
+
+    <h2>My Message</h2>
+
+    <p>A message from my heart</p>
+
+</div>
+<!-- LOVE MESSAGE -->
+
+<div class="love-section" id="loveSection">
+
+    <div class="love-card">
+
+        <div class="love-icon">
+            💌
+        </div>
+
+        <h2>For You ❤️</h2>
+
+        <h3 id="recipientName">
+            My Love
+        </h3>
+
+        <div class="typing-area">
+
+            <p id="typingMessage"></p>
+
+        </div>
+
+        <div class="signature">
+            With all my love ❤️
+        </div>
+
+    </div>
+
+</div>
+
+        </div>
+
+    </div>
+
+</div> 
+    
+<script src="script.js"></script>
+</body>
+</html>

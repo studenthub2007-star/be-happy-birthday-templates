@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template 2 — Love Heart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ================= INTRO / 20 SECOND HEART TRANSITION ================= -->
+  <section id="intro" class="screen intro-screen">
+    <canvas id="loveCanvas"></canvas>
+
+    <div class="intro-center">
+      <div id="introHeart" class="intro-heart" aria-hidden="true">♥</div>
+      <p id="introText" class="intro-text">I Love <span>♥</span>You Maaaaa</p>
+      <button id="nextBtn" class="next-btn" type="button">NEXT <span>→</span></button>
+      <p id="hint" class="hint">A little surprise is waiting for you...</p>
+    </div>
+
+    <div class="progress-wrap">
+      <div id="progressBar" class="progress-bar"></div>
+    </div>
+  </section>
+
+  <!-- ================= FULL EDIT / BIRTHDAY PAGE ================= -->
+  <main id="mainPage" class="main-page hidden">
+    <div class="sparkle-layer" id="sparkles"></div>
+
+    <nav class="topbar">
+      <div class="brand">♥ OUR STORY</div>
+      <button id="musicBtn" class="music-btn" type="button">♫ Music</button>
+    </nav>
+
+    <section class="hero section">
+      <div class="hero-content">
+        <p class="eyebrow">A LITTLE SURPRISE FOR YOU</p>
+        <h1 id="heroTitle">Happy Birthday, Maaaa ❤️</h1>
+        <p id="heroMessage">You are my favourite chapter in my entire life.</p>
+        <button class="primary-btn" id="scrollGallery" type="button">Our Memories ↓</button>
+      </div>
+      <div class="hero-heart">♥</div>
+    </section>
+
+    <section class="section message-section">
+      <div class="section-heading">
+        <p class="eyebrow">FROM MY HEART</p>
+        <h2>A message for you</h2>
+      </div>
+      <div class="glass-card">
+        <p id="longMessage">
+          Every moment with you feels special. Thank you for filling my days
+          with smiles, memories and beautiful little moments. I hope this
+          birthday brings you everything your heart wishes for. ❤️
+        </p>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">OUR MEMORIES</p>
+        <h2>Little moments, big memories</h2>
+      </div>
+
+      <div class="gallery">
+        <label class="photo-card">
+          <input class="photo-input" type="file" accept="image/*" hidden>
+          <img src="" alt="Memory 1" class="memory-image">
+          <span class="upload-label">＋ Add Photo</span>
+        </label>
+        <label class="photo-card">
+          <input class="photo-input" type="file" accept="image/*" hidden>
+          <img src="" alt="Memory 2" class="memory-image">
+          <span class="upload-label">＋ Add Photo</span>
+        </label>
+        <label class="photo-card">
+          <input class="photo-input" type="file" accept="image/*" hidden>
+          <img src="" alt="Memory 3" class="memory-image">
+          <span class="upload-label">＋ Add Photo</span>
+        </label>
+      </div>
+    </section>
+
+    <section class="section timeline-section">
+      <div class="section-heading">
+        <p class="eyebrow">OUR JOURNEY</p>
+        <h2>Three little chapters</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <span>01</span>
+          <div>
+            <h3>The Beginning</h3>
+            <p>Write your first special memory here.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <span>02</span>
+          <div>
+            <h3>Our Favourite Day</h3>
+            <p>Write a beautiful memory here.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <span>03</span>
+          <div>
+            <h3>Forever & Always</h3>
+            <p>Write your future dream here.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cake-section">
+      <div class="cake" id="cake" role="button" tabindex="0" aria-label="Cut the cake">
+        <div class="flame"></div>
+        <div class="candle"></div>
+        <div class="cake-top"></div>
+        <div class="cake-body"></div>
+        <div class="plate"></div>
+      </div>
+      <h2>Make a wish 🎂</h2>
+      <p id="cakeText">Tap the cake to cut it.</p>
+    </section>
+
+    <footer>
+      <p>Made with ♥ for <span id="footerName">Maaaa</span></p>
+    </footer>
+  </main>
+
+  <audio id="music" loop preload="none">
+    <!-- Put your MP3 in assets/music.mp3 -->
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

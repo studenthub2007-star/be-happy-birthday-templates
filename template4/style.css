@@ -1,0 +1,1876 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+}
+
+/* Main Scene */
+
+.scene {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at center,
+            #24000f 0%,
+            #0b0005 45%,
+            #000000 100%
+        );
+}
+
+/* Canvas */
+
+#codeRain {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+#heartCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Heart */
+
+.heart-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    opacity: 0;
+
+    animation:
+        heartAppear 3s ease forwards,
+        heartPulse 1.8s ease-in-out 3s infinite;
+
+    filter:
+        drop-shadow(0 0 10px #ff0066)
+        drop-shadow(0 0 30px #ff0066);
+}
+
+.heart {
+    color: #ff176f;
+    font-size: clamp(120px, 25vw, 300px);
+
+    text-shadow:
+        0 0 10px #ff0066,
+        0 0 30px #ff0066,
+        0 0 60px #ff0066;
+}
+
+/* Message */
+
+.message {
+    position: absolute;
+
+    top: 72%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    gap: 18px;
+
+    color: white;
+
+    font-size: clamp(22px, 5vw, 55px);
+
+    font-weight: bold;
+
+    letter-spacing: 8px;
+
+    text-shadow:
+        0 0 10px #ff0066,
+        0 0 25px #ff0066;
+
+    opacity: 0;
+
+    animation: messageAppear 2s ease forwards;
+    animation-delay: 4s;
+}
+
+.message span {
+    animation: letterGlow 2s ease-in-out infinite alternate;
+}
+
+.message span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.message span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+
+/* Heart Entrance */
+
+@keyframes heartAppear {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(0);
+    }
+
+    60% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1.15);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+/* Heart Pulse */
+
+@keyframes heartPulse {
+
+    0% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%)
+            scale(1.08);
+    }
+
+    100% {
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+}
+
+
+/* Message Entrance */
+
+@keyframes messageAppear {
+
+    0% {
+        opacity: 0;
+        transform:
+            translate(-50%, -30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform:
+            translate(-50%, 0);
+    }
+}
+
+
+/* Text Glow */
+
+@keyframes letterGlow {
+
+    from {
+        text-shadow:
+            0 0 5px #ff0066;
+    }
+
+    to {
+        text-shadow:
+            0 0 10px #ff0066,
+            0 0 30px #ff0066,
+            0 0 50px #ff0066;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .message {
+        gap: 10px;
+        letter-spacing: 4px;
+    }
+
+}
+/* ==============================
+   PERSONALIZED MESSAGE SCREEN
+================================ */
+
+.message-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #300015 0%,
+            #100007 45%,
+            #000 100%
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+}
+
+
+/* Show screen */
+
+.message-screen.show {
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* Card */
+
+.message-card {
+
+    width: min(90%, 500px);
+
+    padding: 45px 30px;
+
+    text-align: center;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid
+        rgba(255, 80, 150, 0.35);
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 0 40px
+        rgba(255, 0, 100, 0.18);
+
+    transform:
+        scale(0.7)
+        translateY(40px);
+
+    transition:
+        transform 1s
+        cubic-bezier(.17,.67,.3,1.3);
+}
+
+
+.message-screen.show
+.message-card {
+
+    transform:
+        scale(1)
+        translateY(0);
+}
+
+
+/* Small Heart */
+
+.small-heart {
+
+    font-size: 55px;
+
+    color: #ff277d;
+
+    margin-bottom: 15px;
+
+    text-shadow:
+        0 0 10px #ff0066,
+        0 0 30px #ff0066;
+
+    animation:
+        smallHeartPulse 1.5s
+        infinite;
+}
+
+
+@keyframes smallHeartPulse {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+
+/* Heading */
+
+.message-card h1 {
+
+    color: white;
+
+    font-size:
+        clamp(26px, 6vw, 42px);
+
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 0 15px #ff0066;
+}
+
+
+/* Main message */
+
+.love-message {
+
+    color: #ff80b5;
+
+    font-size:
+        clamp(18px, 4vw, 25px);
+
+    line-height: 1.5;
+
+    margin-bottom: 12px;
+}
+
+
+/* Sub message */
+
+.sub-message {
+
+    color: rgba(255,255,255,0.7);
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 30px;
+}
+
+
+/* Continue Button */
+
+#nextButton {
+
+    border: none;
+
+    outline: none;
+
+    padding:
+        13px 30px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0066,
+            #ff4d94
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px
+        rgba(255,0,102,0.5);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+#nextButton:hover {
+
+    transform:
+        scale(1.08);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,0,102,0.8);
+}
+
+
+#nextButton:active {
+
+    transform:
+        scale(.95);
+}
+/* ==============================
+   MAIN PAGE
+================================ */
+
+.main-page {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 20;
+
+    overflow-y: auto;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #350018 0%,
+            #120008 45%,
+            #000 100%
+        );
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(40px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease,
+        visibility 1s ease;
+}
+
+
+/* Show Main Page */
+
+.main-page.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0);
+}
+
+
+/* Main Content */
+
+.main-content {
+
+    width: min(
+        100% - 30px,
+        900px
+    );
+
+    margin:
+        0 auto;
+
+    padding:
+        70px 0 100px;
+
+    text-align: center;
+}
+
+
+/* Heart */
+
+.main-heart {
+
+    font-size: 75px;
+
+    color: #ff277d;
+
+    text-shadow:
+        0 0 15px #ff0066,
+        0 0 40px #ff0066;
+
+    animation:
+        mainHeartPulse 1.7s
+        infinite;
+}
+
+
+@keyframes mainHeartPulse {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+
+/* Heading */
+
+.main-content h1 {
+
+    color: white;
+
+    font-size:
+        clamp(30px, 7vw, 55px);
+
+    margin:
+        15px 0;
+
+    text-shadow:
+        0 0 20px #ff0066;
+}
+
+
+.intro-text {
+
+    color:
+        rgba(255,255,255,.7);
+
+    font-size: 17px;
+
+    margin-bottom: 45px;
+}
+
+
+/* Feature Grid */
+
+.feature-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+/* Feature Card */
+
+.feature-card {
+
+    padding: 30px 20px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,70,140,.25);
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 10px 40px
+        rgba(0,0,0,.3);
+
+    cursor: pointer;
+
+    transition:
+        transform .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+}
+
+
+.feature-card:hover {
+
+    transform:
+        translateY(-8px)
+        scale(1.02);
+
+    background:
+        rgba(255,0,100,.10);
+
+    box-shadow:
+        0 15px 50px
+        rgba(255,0,100,.2);
+}
+
+
+/* Icon */
+
+.feature-icon {
+
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+
+.feature-card h2 {
+
+    color: white;
+
+    font-size: 22px;
+
+    margin-bottom: 10px;
+}
+
+
+.feature-card p {
+
+    color:
+        rgba(255,255,255,.6);
+
+    font-size: 14px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .feature-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .main-content {
+
+        padding-top: 45px;
+    }
+
+}
+/* ==============================
+   MUSIC PLAYER
+================================ */
+
+.music-player {
+
+    width: min(90%, 500px);
+
+    margin: 40px auto 0;
+
+    padding: 30px;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    border:
+        1px solid
+        rgba(255,70,140,0.3);
+
+    backdrop-filter: blur(15px);
+
+    text-align: center;
+}
+
+
+/* Music Disc */
+
+.music-disc {
+
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+
+    font-size: 45px;
+
+    background:
+        rgba(255,0,100,0.12);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,0,100,0.4);
+}
+
+
+/* Rotating disc */
+
+.music-disc.playing {
+
+    animation:
+        rotateDisc 4s linear infinite;
+}
+
+
+@keyframes rotateDisc {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Song title */
+
+.music-player h2 {
+
+    color: white;
+
+    margin-bottom: 8px;
+}
+
+
+#songStatus {
+
+    color:
+        rgba(255,255,255,0.6);
+
+    margin-bottom: 20px;
+}
+
+
+/* Play Button */
+
+#playButton {
+
+    border: none;
+
+    padding:
+        12px 30px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0066,
+            #ff4d94
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease;
+}
+
+
+#playButton:hover {
+
+    transform: scale(1.08);
+}
+/* ==============================
+   PHOTO GALLERY
+================================ */
+
+.gallery-section {
+
+    width: min(92%, 900px);
+
+    margin: 50px auto 0;
+
+    text-align: center;
+
+    display: none;
+}
+
+.gallery-section h2 {
+
+    color: white;
+
+    font-size:
+        clamp(28px, 6vw, 45px);
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 20px #ff0066;
+}
+
+.gallery-subtitle {
+
+    color:
+        rgba(255,255,255,0.6);
+
+    margin-bottom: 30px;
+}
+
+
+/* Gallery Grid */
+
+.gallery {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+
+/* Photo */
+
+.photo-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    aspect-ratio: 1 / 1;
+
+    background: #120008;
+
+    border:
+        1px solid
+        rgba(255,70,140,0.25);
+
+    cursor: pointer;
+
+    transition:
+        transform .4s ease,
+        box-shadow .4s ease;
+}
+
+
+.photo-card:hover {
+
+    transform:
+        scale(1.03);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,0,100,0.3);
+}
+
+
+.photo-card img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .5s ease;
+}
+
+
+.photo-card:hover img {
+
+    transform:
+        scale(1.08);
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .gallery {
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 10px;
+    }
+
+}
+/* ==============================
+   FULLSCREEN PHOTO VIEWER
+================================ */
+
+.photo-viewer {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    background:
+        rgba(0, 0, 0, 0.94);
+
+    backdrop-filter:
+        blur(12px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+}
+
+
+/* Open viewer */
+
+.photo-viewer.show {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* Viewer Content */
+
+.viewer-content {
+
+    max-width: 85vw;
+
+    max-height: 85vh;
+
+    text-align: center;
+}
+
+
+#viewerImage {
+
+    max-width: 85vw;
+
+    max-height: 78vh;
+
+    object-fit: contain;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 0 50px
+        rgba(255, 0, 100, .25);
+
+    transform:
+        scale(.8);
+
+    transition:
+        transform .4s ease;
+}
+
+
+.photo-viewer.show
+#viewerImage {
+
+    transform:
+        scale(1);
+}
+
+
+/* Counter */
+
+#viewerCounter {
+
+    color: white;
+
+    margin-top: 15px;
+
+    font-size: 14px;
+
+    opacity: .7;
+}
+
+
+/* Buttons */
+
+.viewer-close,
+.viewer-prev,
+.viewer-next {
+
+    position: absolute;
+
+    border: none;
+
+    background:
+        rgba(255,255,255,.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    width: 50px;
+
+    height: 50px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+
+    transition:
+        background .3s ease,
+        transform .3s ease;
+}
+
+
+.viewer-close:hover,
+.viewer-prev:hover,
+.viewer-next:hover {
+
+    background:
+        rgba(255,0,100,.5);
+
+    transform:
+        scale(1.1);
+}
+
+
+/* Close */
+
+.viewer-close {
+
+    top: 25px;
+
+    right: 25px;
+}
+
+
+/* Previous */
+
+.viewer-prev {
+
+    left: 25px;
+}
+
+
+/* Next */
+
+.viewer-next {
+
+    right: 25px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    #viewerImage {
+
+        max-width: 90vw;
+
+        max-height: 70vh;
+    }
+
+    .viewer-prev {
+
+        left: 10px;
+    }
+
+    .viewer-next {
+
+        right: 10px;
+    }
+
+    .viewer-close {
+
+        top: 15px;
+
+        right: 15px;
+    }
+
+}
+/* ==============================
+   VIDEO GALLERY
+================================ */
+
+.video-section {
+
+    width: min(92%, 900px);
+
+    margin: 60px auto 0;
+
+    text-align: center;
+
+    display: none;
+}
+
+
+.video-section h2 {
+
+    color: white;
+
+    font-size:
+        clamp(28px, 6vw, 45px);
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 20px #ff0066;
+}
+
+
+.video-subtitle {
+
+    color:
+        rgba(255,255,255,.6);
+
+    margin-bottom: 30px;
+}
+
+
+/* Video Grid */
+
+.video-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+/* Video Card */
+
+.video-card {
+
+    padding: 12px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,70,140,.25);
+
+    overflow: hidden;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.video-card:hover {
+
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 15px 40px
+        rgba(255,0,100,.2);
+}
+
+
+/* Video */
+
+.video-card video {
+
+    width: 100%;
+
+    display: block;
+
+    border-radius: 14px;
+
+    background: black;
+}
+
+
+.video-card h3 {
+
+    color: white;
+
+    font-size: 16px;
+
+    margin:
+        14px 5px 5px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .video-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+/* ==============================
+   LOVE MESSAGE
+================================ */
+
+.love-section {
+
+    width: min(92%, 700px);
+
+    margin: 70px auto 100px;
+
+    display: none;
+
+    text-align: center;
+}
+
+
+/* Message Card */
+
+.love-card {
+
+    padding: 45px 30px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,70,140,.3);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.35);
+}
+
+
+/* Icon */
+
+.love-icon {
+
+    font-size: 60px;
+
+    margin-bottom: 15px;
+
+    animation:
+        messageHeart 1.5s
+        infinite;
+}
+
+
+@keyframes messageHeart {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+
+/* Heading */
+
+.love-card h2 {
+
+    color: white;
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+}
+
+
+/* Recipient */
+
+#recipientName {
+
+    color: #ff5c9d;
+
+    font-size: 25px;
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        0 0 15px #ff0066;
+}
+
+
+/* Typing Area */
+
+.typing-area {
+
+    min-height: 140px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+/* Message */
+
+#typingMessage {
+
+    color:
+        rgba(255,255,255,.85);
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+    white-space: pre-line;
+}
+
+
+/* Cursor */
+
+#typingMessage::after {
+
+    content: "|";
+
+    color: #ff277d;
+
+    animation:
+        cursorBlink .8s
+        infinite;
+}
+
+
+@keyframes cursorBlink {
+
+    0%,50% {
+        opacity: 1;
+    }
+
+    51%,100% {
+        opacity: 0;
+    }
+}
+
+
+/* Signature */
+
+.signature {
+
+    margin-top: 25px;
+
+    color: #ff80b5;
+
+    font-style: italic;
+
+    font-size: 16px;
+}
+/* ==============================
+   LOVE EFFECTS
+================================ */
+
+#effectsLayer {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+
+/* Floating Heart */
+
+.floating-heart {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    color: #ff277d;
+
+    font-size:
+        var(--size);
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 0 8px #ff0066
+        );
+
+    animation:
+        floatHeart
+        var(--duration)
+        linear
+        forwards;
+}
+
+
+@keyframes floatHeart {
+
+    0% {
+
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg)
+            scale(.6);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity:
+            var(--opacity);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-50vh)
+            translateX(var(--move))
+            rotate(180deg)
+            scale(1);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-115vh)
+            translateX(
+                calc(var(--move) * -1)
+            )
+            rotate(360deg)
+            scale(.7);
+
+        opacity: 0;
+
+    }
+}
+
+
+/* Falling Petal */
+
+.falling-petal {
+
+    position: absolute;
+
+    top: -40px;
+
+    width:
+        var(--petal-width);
+
+    height:
+        var(--petal-height);
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4d94,
+            #ff0066
+        );
+
+    border-radius:
+        100% 0 100% 0;
+
+    opacity:
+        var(--opacity);
+
+    filter:
+        blur(.2px)
+        drop-shadow(
+            0 0 5px
+            rgba(255,0,100,.5)
+        );
+
+    animation:
+        fallPetal
+        var(--duration)
+        linear
+        forwards;
+}
+
+
+@keyframes fallPetal {
+
+    0% {
+
+        transform:
+            translateY(-50px)
+            translateX(0)
+            rotate(0deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(55vh)
+            translateX(var(--move))
+            rotate(180deg);
+
+    }
+
+    100% {
+
+        transform:
+            translateY(115vh)
+            translateX(
+                calc(var(--move) * -1)
+            )
+            rotate(360deg);
+
+        opacity: 0;
+
+    }
+}
+
+
+/* Sparkle */
+
+.sparkle {
+
+    position: absolute;
+
+    width:
+        var(--sparkle-size);
+
+    height:
+        var(--sparkle-size);
+
+    border-radius: 50%;
+
+    background: white;
+
+    box-shadow:
+        0 0 8px white,
+        0 0 18px #ff4d94;
+
+    animation:
+        sparkleAnimation
+        var(--duration)
+        ease-in-out
+        forwards;
+}
+
+
+@keyframes sparkleAnimation {
+
+    0% {
+
+        transform:
+            scale(0);
+
+        opacity: 0;
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.5);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            scale(0);
+
+        opacity: 0;
+
+    }
+}
+/* ==============================
+   CUSTOMIZER
+================================ */
+
+.customizer {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        rgba(0,0,0,.85);
+
+    backdrop-filter:
+        blur(10px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .4s ease,
+        visibility .4s ease;
+}
+
+
+.customizer.show {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* Card */
+
+.customizer-card {
+
+    position: relative;
+
+    width: min(100%, 500px);
+
+    padding: 35px 25px;
+
+    border-radius: 25px;
+
+    background:
+        #17000b;
+
+    border:
+        1px solid
+        rgba(255,70,140,.35);
+
+    box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.6);
+
+    transform:
+        scale(.85);
+
+    transition:
+        transform .4s ease;
+}
+
+
+.customizer.show
+.customizer-card {
+
+    transform:
+        scale(1);
+}
+
+
+/* Heading */
+
+.customizer-card h2 {
+
+    color: white;
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+    text-shadow:
+        0 0 15px #ff0066;
+}
+
+
+/* Labels */
+
+.customizer-card label {
+
+    display: block;
+
+    color:
+        rgba(255,255,255,.8);
+
+    margin:
+        15px 0 7px;
+
+    font-size: 14px;
+}
+
+
+/* Inputs */
+
+.customizer-card input,
+.customizer-card textarea {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 12px;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.08);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+    font-size: 15px;
+}
+
+
+.customizer-card textarea {
+
+    min-height: 120px;
+
+    resize: vertical;
+
+    font-family: inherit;
+}
+
+
+/* Apply button */
+
+#applyCustomization {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff0066,
+            #ff4d94
+        );
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* Close */
+
+.customizer-close {
+
+    position: absolute;
+
+    top: 15px;
+
+    right: 15px;
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    color: white;
+
+    background:
+        rgba(255,255,255,.08);
+
+    cursor: pointer;
+}
+
+
+/* Customize Button */
+
+.customize-button {
+
+    border: none;
+
+    padding:
+        12px 25px;
+
+    margin-bottom: 35px;
+
+    border-radius: 30px;
+
+    color: white;
+
+    background:
+        rgba(255,0,100,.15);
+
+    border:
+        1px solid
+        rgba(255,70,140,.4);
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition:
+        transform .3s ease;
+}
+
+
+.customize-button:hover {
+
+    transform:
+        scale(1.05);
+}

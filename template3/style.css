@@ -1,0 +1,3390 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+
+    overflow-x: hidden;
+
+    font-family: Arial, sans-serif;
+}
+
+
+/* =================================
+   HEART INTRO SCREEN
+================================= */
+
+#heartIntro {
+    position: fixed;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #21000b 0%,
+            #080008 45%,
+            #000000 100%
+        );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    z-index: 100;
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+
+/* =================================
+   HEART
+================================= */
+
+.heart-container {
+    position: relative;
+
+    width: min(70vw, 500px);
+    height: min(70vw, 500px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.heart-svg {
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+
+/* Heart outline */
+
+#heartPath {
+
+    fill: rgba(255, 0, 70, 0.05);
+
+    stroke: #ff174f;
+
+    stroke-width: 5;
+
+    stroke-linecap: round;
+
+    stroke-linejoin: round;
+
+    filter:
+        drop-shadow(0 0 5px #ff174f)
+        drop-shadow(0 0 20px rgba(255, 23, 79, 0.8));
+
+    /*
+       Heart sketch animation
+    */
+
+    stroke-dasharray: 1600;
+
+    stroke-dashoffset: 1600;
+
+    animation:
+        drawHeart 10s ease-in-out forwards,
+        heartGlow 2s ease-in-out 10s infinite alternate;
+}
+
+
+/* =================================
+   HEART DRAWING
+================================= */
+
+@keyframes drawHeart {
+
+    0% {
+        stroke-dashoffset: 1600;
+        fill: rgba(255, 0, 70, 0);
+    }
+
+    70% {
+        stroke-dashoffset: 350;
+        fill: rgba(255, 0, 70, 0);
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        fill: rgba(255, 0, 70, 0.15);
+    }
+}
+
+
+@keyframes heartGlow {
+
+    from {
+        filter:
+            drop-shadow(0 0 5px #ff174f);
+    }
+
+    to {
+        filter:
+            drop-shadow(0 0 10px #ff174f)
+            drop-shadow(0 0 35px #ff174f);
+    }
+}
+
+
+/* =================================
+   HEART TEXT
+================================= */
+
+.heart-text {
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+
+    color: white;
+
+    opacity: 0;
+
+    animation:
+        showHeartText 2s ease forwards 9s;
+}
+
+
+.heart-text span {
+    display: block;
+
+    font-size: clamp(18px, 4vw, 30px);
+
+    letter-spacing: 3px;
+}
+
+
+.heart-text span:last-child {
+
+    font-size: 55px;
+
+    color: #ff174f;
+
+    text-shadow:
+        0 0 10px #ff174f,
+        0 0 30px #ff174f;
+}
+
+
+@keyframes showHeartText {
+
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+/* =================================
+   INTRO MESSAGE
+================================= */
+
+.intro-message {
+
+    position: absolute;
+
+    bottom: 8%;
+
+    color: rgba(255,255,255,0.8);
+
+    font-size: clamp(14px, 3vw, 20px);
+
+    letter-spacing: 2px;
+
+    opacity: 0;
+
+    animation:
+        messageAppear 2s ease forwards 10s;
+}
+
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =================================
+   PARTICLES
+================================= */
+
+.particle {
+
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    background: #ff174f;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px #ff174f,
+        0 0 20px #ff174f;
+
+    opacity: 0;
+
+    animation:
+        particleFloat 4s ease-in-out infinite;
+}
+
+
+.p1 {
+    top: 25%;
+    left: 25%;
+    animation-delay: 2s;
+}
+
+.p2 {
+    top: 30%;
+    right: 20%;
+    animation-delay: 3s;
+}
+
+.p3 {
+    bottom: 30%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.p4 {
+    bottom: 25%;
+    right: 25%;
+    animation-delay: 4s;
+}
+
+.p5 {
+    top: 18%;
+    left: 50%;
+    animation-delay: 2.5s;
+}
+
+.p6 {
+    bottom: 18%;
+    left: 50%;
+    animation-delay: 3.5s;
+}
+
+
+@keyframes particleFloat {
+
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-80px) scale(1.5);
+    }
+}
+
+
+/* =================================
+   MAIN PAGE
+================================= */
+
+#mainPage {
+
+    width: 100%;
+    height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #3b0015,
+            #12000b 45%,
+            #030003 100%
+        );
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+
+    transform: scale(1.08);
+
+    transition:
+        opacity 2s ease,
+        transform 2s ease;
+}
+
+
+#mainPage.show {
+
+    opacity: 1;
+
+    transform: scale(1);
+}
+
+
+/* =================================
+   PAGE CONTENT
+================================= */
+
+.page-content {
+
+    text-align: center;
+
+    position: relative;
+
+    padding: 40px;
+}
+
+
+.page-content h1 {
+
+    color: white;
+
+    font-size: clamp(40px, 8vw, 80px);
+
+    margin-bottom: 20px;
+
+    text-shadow:
+        0 0 10px #ff174f,
+        0 0 30px #ff174f;
+}
+
+
+.page-content p {
+
+    color: rgba(255,255,255,0.75);
+
+    font-size: clamp(16px, 3vw, 22px);
+
+    margin-bottom: 35px;
+}
+
+
+.page-content button {
+
+    border: 1px solid #ff174f;
+
+    background: rgba(255, 23, 79, 0.15);
+
+    color: white;
+
+    padding: 15px 35px;
+
+    border-radius: 50px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    box-shadow:
+        0 0 15px rgba(255,23,79,0.5);
+}
+
+
+.page-content button:hover {
+
+    background: #ff174f;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 0 30px #ff174f;
+}
+/* =========================================
+   FULL LOVE WEBSITE
+========================================= */
+
+#loveWebsite {
+
+    display: none;
+
+    width: 100%;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #350014,
+            #090006 45%,
+            #000 100%
+        );
+
+    color: white;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero-section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+
+    padding: 40px 20px;
+}
+
+
+.hero-content {
+
+    max-width: 800px;
+
+    animation:
+        heroAppear 1.5s ease forwards;
+}
+
+
+@keyframes heroAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.hero-heart {
+
+    font-size: 100px;
+
+    color: #ff174f;
+
+    margin-bottom: 20px;
+
+    animation:
+        heartBeat 1.5s infinite;
+
+    text-shadow:
+        0 0 15px #ff174f,
+        0 0 40px #ff174f,
+        0 0 80px #ff174f;
+}
+
+
+.hero-section h1 {
+
+    font-size: clamp(60px, 12vw, 130px);
+
+    margin: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ff5c87,
+            #fff
+        );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        textShine 4s linear infinite;
+}
+
+
+.hero-section p {
+
+    max-width: 600px;
+
+    margin: 25px auto;
+
+    font-size: 20px;
+
+    line-height: 1.7;
+
+    color:
+        rgba(255,255,255,0.7);
+}
+
+
+.scroll-text {
+
+    margin-top: 80px;
+
+    color:
+        rgba(255,255,255,0.5);
+
+    letter-spacing: 3px;
+
+    animation:
+        scrollFloat 2s ease-in-out infinite;
+}
+
+
+@keyframes scrollFloat {
+
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+
+/* =========================================
+   MESSAGE SECTION
+========================================= */
+
+.message-section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 80px 20px;
+}
+
+
+.glass-card {
+
+    width: min(90%, 700px);
+
+    padding: 60px 45px;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 20px 80px
+        rgba(255,23,79,0.15);
+
+    text-align: center;
+}
+
+
+.section-heart {
+
+    font-size: 60px;
+
+    color: #ff174f;
+
+    text-shadow:
+        0 0 20px #ff174f;
+}
+
+
+.glass-card h2 {
+
+    font-size: clamp(35px, 6vw, 60px);
+
+    margin:
+        20px 0 30px;
+}
+
+
+.glass-card p {
+
+    color:
+        rgba(255,255,255,0.72);
+
+    font-size: 18px;
+
+    line-height: 1.9;
+
+    margin: 15px 0;
+}
+
+
+/* =========================================
+   PHOTO BOX
+========================================= */
+
+.photo-box {
+
+    width: 100%;
+
+    height: 330px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    margin-bottom: 20px;
+
+    background:
+        #120008;
+
+    position: relative;
+}
+
+
+/* Actual image */
+
+.photo-box img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.7s ease;
+}
+
+
+/* Zoom when mouse moves over */
+
+.memory-card:hover
+.photo-box img {
+
+    transform:
+        scale(1.08);
+}
+
+
+/* Pink glow */
+
+.photo-box::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: 20px;
+
+    pointer-events: none;
+
+    box-shadow:
+        inset 0 0 40px
+        rgba(255,23,79,0.15);
+
+    transition:
+        box-shadow 0.5s ease;
+}
+
+
+.memory-card:hover
+.photo-box::after {
+
+    box-shadow:
+        inset 0 0 60px
+        rgba(255,23,79,0.35);
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .photo-box {
+
+        height: 280px;
+    }
+
+}
+
+
+/* =========================================
+   FINAL SECTION
+========================================= */
+
+.final-section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px 20px;
+}
+
+
+.final-heart {
+
+    font-size: 110px;
+
+    color: #ff174f;
+
+    animation:
+        heartBeat 1.5s infinite;
+
+    text-shadow:
+        0 0 20px #ff174f,
+        0 0 50px #ff174f;
+}
+
+
+.final-section h2 {
+
+    font-size:
+        clamp(40px, 7vw, 80px);
+
+    margin: 25px 0;
+}
+
+
+.final-section p {
+
+    font-size: 20px;
+
+    color:
+        rgba(255,255,255,0.65);
+}
+
+
+.final-love {
+
+    margin-top: 50px;
+
+    font-size: 24px;
+
+    color: #ff6b91;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .memory-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .memory-placeholder {
+
+        height: 250px;
+    }
+
+    .glass-card {
+
+        padding: 40px 25px;
+    }
+
+}
+/* =========================================
+   PREMIUM MEMORY GALLERY
+========================================= */
+
+.memory-gallery {
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 35px;
+
+    perspective: 1200px;
+}
+
+
+/* =========================================
+   MEMORY CARD
+========================================= */
+
+.memory-card {
+
+    position: relative;
+
+    padding: 18px;
+
+    border-radius: 28px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    backdrop-filter:
+        blur(12px);
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.6s ease,
+        box-shadow 0.6s ease,
+        border-color 0.6s ease;
+}
+
+
+.memory-card:hover {
+
+    transform:
+        translateY(-15px)
+        rotateX(3deg)
+        rotateY(-3deg);
+
+    border-color:
+        rgba(255,23,79,0.5);
+
+    box-shadow:
+        0 25px 70px
+        rgba(255,23,79,0.25);
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo-box {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 350px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: #120008;
+}
+
+
+.photo-box img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform 0.8s ease;
+}
+
+
+.memory-card:hover
+.photo-box img {
+
+    transform:
+        scale(1.1);
+}
+
+
+/* =========================================
+   PHOTO OVERLAY
+========================================= */
+
+.photo-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    background:
+        rgba(0,0,0,0.45);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.5s ease;
+}
+
+
+.memory-card:hover
+.photo-overlay {
+
+    opacity: 1;
+}
+
+
+.photo-overlay span {
+
+    width: 65px;
+
+    height: 65px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,23,79,0.85);
+
+    color: white;
+
+    font-size: 28px;
+
+    box-shadow:
+        0 0 30px
+        rgba(255,23,79,0.8);
+
+    animation:
+        heartBeat 1.4s infinite;
+}
+
+
+.photo-overlay small {
+
+    color: white;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   CARD TEXT
+========================================= */
+
+.memory-card h3 {
+
+    margin-top: 20px;
+
+    font-size: 23px;
+}
+
+
+.memory-card p {
+
+    margin-top: 8px;
+
+    color:
+        rgba(255,255,255,0.55);
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   FULLSCREEN VIEWER
+========================================= */
+
+#photoViewer {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    background:
+        rgba(0,0,0,0.94);
+
+    backdrop-filter:
+        blur(15px);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease;
+}
+
+
+#photoViewer.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+/* =========================================
+   VIEWER CONTENT
+========================================= */
+
+.viewer-content {
+
+    position: relative;
+
+    max-width: 90vw;
+
+    max-height: 90vh;
+
+    animation:
+        viewerOpen 0.5s ease;
+}
+
+
+@keyframes viewerOpen {
+
+    from {
+
+        transform:
+            scale(0.7);
+
+        opacity: 0;
+    }
+
+    to {
+
+        transform:
+            scale(1);
+
+        opacity: 1;
+    }
+}
+
+
+#viewerImage {
+
+    display: block;
+
+    max-width: 90vw;
+
+    max-height: 82vh;
+
+    object-fit: contain;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 0 80px
+        rgba(255,23,79,0.3);
+}
+
+
+/* =========================================
+   CLOSE BUTTON
+========================================= */
+
+.close-viewer {
+
+    position: absolute;
+
+    top: 25px;
+
+    right: 30px;
+
+    z-index: 2;
+
+    width: 50px;
+
+    height: 50px;
+
+    border: 1px solid
+        rgba(255,255,255,0.3);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color: white;
+
+    font-size: 32px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        0.3s ease;
+}
+
+
+.close-viewer:hover {
+
+    background:
+        #ff174f;
+
+    border-color:
+        #ff174f;
+
+    transform:
+        rotate(90deg);
+}
+
+
+/* =========================================
+   VIEWER HEART
+========================================= */
+
+.viewer-heart {
+
+    position: absolute;
+
+    left: 50%;
+
+    bottom: -45px;
+
+    transform:
+        translateX(-50%);
+
+    color:
+        #ff174f;
+
+    font-size: 25px;
+
+    text-shadow:
+        0 0 20px #ff174f;
+
+    animation:
+        heartBeat 1.5s infinite;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+    .memory-gallery {
+
+        grid-template-columns:
+            1fr;
+
+        max-width: 500px;
+    }
+
+    .photo-box {
+
+        height: 350px;
+    }
+
+    .memory-card:hover {
+
+        transform:
+            translateY(-8px);
+    }
+}
+/* =========================================
+   SCROLL BUTTON
+========================================= */
+
+.scroll-button {
+
+    margin-top: 70px;
+
+    background: transparent;
+
+    border: none;
+
+    color:
+        rgba(255,255,255,0.6);
+
+    font-size: 15px;
+
+    letter-spacing: 3px;
+
+    cursor: pointer;
+
+    animation:
+        scrollFloat 2s ease-in-out infinite;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.scroll-button:hover {
+
+    color: #ff6b91;
+
+    transform:
+        scale(1.08);
+}
+
+
+/* =========================================
+   MESSAGE SECTION
+========================================= */
+
+.message-section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 100px 20px;
+
+    position: relative;
+}
+
+
+.message-wrapper {
+
+    width: min(90%, 750px);
+}
+
+
+/* Small heading */
+
+.message-label {
+
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    color:
+        rgba(255,255,255,0.45);
+
+    margin-bottom: 20px;
+}
+
+
+/* Heart */
+
+.message-heart {
+
+    font-size: 55px;
+
+    color: #ff174f;
+
+    text-shadow:
+        0 0 15px #ff174f,
+        0 0 40px #ff174f;
+
+    animation:
+        heartBeat 1.5s infinite;
+}
+
+
+/* Heading */
+
+.message-wrapper h2 {
+
+    font-size:
+        clamp(35px, 7vw, 65px);
+
+    margin:
+        20px 0 45px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ff6b91,
+            #ffffff
+        );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        textShine 4s linear infinite;
+}
+/* =========================================
+   ENVELOPE AREA
+========================================= */
+
+.envelope-area {
+
+    width: 100%;
+
+    height: 360px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    perspective: 1000px;
+}
+
+
+/* =========================================
+   ENVELOPE
+========================================= */
+
+.envelope {
+
+    position: relative;
+
+    width: min(85vw, 520px);
+
+    height: 300px;
+
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(
+            0 25px 45px
+            rgba(0,0,0,0.45)
+        );
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.envelope-area:hover
+.envelope {
+
+    transform:
+        translateY(-8px);
+}
+
+
+/* =========================================
+   ENVELOPE BACK
+========================================= */
+
+.envelope-back {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4b071c,
+            #22000d
+        );
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    z-index: 1;
+}
+
+
+/* =========================================
+   LETTER
+========================================= */
+
+.letter {
+
+    position: absolute;
+
+    left: 7%;
+
+    bottom: 5%;
+
+    width: 86%;
+
+    height: 260px;
+
+    padding: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff,
+            #ffecef
+        );
+
+    border-radius: 8px;
+
+    color: #350014;
+
+    z-index: 2;
+
+    transform:
+        translateY(80px);
+
+    transition:
+        transform 1s cubic-bezier(
+            .2,.8,.2,1
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.25);
+
+    overflow: hidden;
+}
+
+
+.letter-content {
+
+    opacity: 0;
+
+    transform:
+        translateY(15px);
+
+    transition:
+        opacity 0.8s ease 0.6s,
+        transform 0.8s ease 0.6s;
+}
+
+
+.letter h3 {
+
+    font-size: 24px;
+
+    margin-bottom: 15px;
+}
+
+
+.letter p {
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin: 8px 0;
+}
+
+
+.signature {
+
+    margin-top: 15px;
+
+    color: #ff174f;
+
+    font-size: 17px;
+
+    font-style: italic;
+}
+
+
+/* =========================================
+   ENVELOPE FRONT
+========================================= */
+
+.envelope-front {
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 72%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #6b0b29,
+            #300010
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 55%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 4;
+
+    border-radius:
+        0 0 12px 12px;
+}
+
+
+/* =========================================
+   ENVELOPE FLAP
+========================================= */
+
+.envelope-flap {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 62%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #801137,
+            #410018
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    transform-origin:
+        top center;
+
+    transition:
+        transform 1s
+        cubic-bezier(
+            .2,.8,.2,1
+        );
+
+    z-index: 5;
+
+    backface-visibility: hidden;
+}
+
+
+/* =========================================
+   HEART SEAL
+========================================= */
+
+.flap-heart {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 35%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        #ff174f;
+
+    color: white;
+
+    font-size: 24px;
+
+    box-shadow:
+        0 0 15px #ff174f,
+        0 0 35px
+        rgba(255,23,79,0.6);
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+/* =========================================
+   OPEN STATE
+========================================= */
+
+.envelope-area.open
+.envelope-flap {
+
+    transform:
+        rotateX(180deg);
+
+    z-index: 1;
+}
+
+
+.envelope-area.open
+.letter {
+
+    transform:
+        translateY(-100px);
+
+    z-index: 6;
+}
+
+
+.envelope-area.open
+.letter-content {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+.envelope-area.open
+.flap-heart {
+
+    opacity: 0;
+}
+
+
+/* =========================================
+   HINT
+========================================= */
+
+.envelope-hint {
+
+    margin-top: 10px;
+
+    color:
+        rgba(255,255,255,0.55);
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    transition:
+        opacity 0.4s ease;
+}
+
+
+.envelope-area.open
++ .envelope-hint {
+
+    opacity: 0;
+}
+
+
+/* =========================================
+   CONTINUE
+========================================= */
+
+#messageContinue {
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.6s ease;
+}
+
+
+#messageContinue.show {
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .envelope-area {
+
+        height: 330px;
+    }
+
+    .envelope {
+
+        width: 90vw;
+
+        height: 240px;
+    }
+
+    .letter {
+
+        height: 220px;
+
+        padding: 22px;
+    }
+
+    .letter p {
+
+        font-size: 12px;
+    }
+
+    .letter h3 {
+
+        font-size: 19px;
+    }
+
+}
+
+
+/* =========================================
+   LETTER
+========================================= */
+
+.letter-card {
+
+    position: relative;
+
+    padding:
+        65px 50px 50px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.14);
+
+    backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+        0 25px 90px
+        rgba(255,23,79,0.14);
+
+    overflow: hidden;
+}
+
+
+/* top decoration */
+
+.letter-top {
+
+    position: absolute;
+
+    top: 0;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    width: 80px;
+
+    height: 45px;
+
+    border-radius:
+        0 0 40px 40px;
+
+    background:
+        rgba(255,23,79,0.15);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+.letter-top span {
+
+    color: #ff174f;
+
+    font-size: 22px;
+
+    text-shadow:
+        0 0 15px #ff174f;
+}
+
+
+/* Letter text */
+
+.letter-card p {
+
+    color:
+        rgba(255,255,255,0.72);
+
+    font-size: 18px;
+
+    line-height: 2;
+
+    margin: 18px 0;
+}
+
+
+/* Signature */
+
+.letter-card .signature {
+
+    margin-top: 35px;
+
+    color: #ff6b91;
+
+    font-size: 21px;
+
+    font-style: italic;
+}
+
+
+/* =========================================
+   CONTINUE BUTTON
+========================================= */
+
+.continue-button {
+
+    margin-top: 45px;
+
+    padding:
+        14px 32px;
+
+    border:
+        1px solid #ff174f;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,23,79,0.08);
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        0.4s ease;
+}
+
+
+.continue-button:hover {
+
+    background: #ff174f;
+
+    box-shadow:
+        0 0 30px
+        rgba(255,23,79,0.5);
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .letter-card {
+
+        padding:
+            60px 25px 35px;
+    }
+
+    .letter-card p {
+
+        font-size: 16px;
+
+        line-height: 1.8;
+    }
+
+}
+/* =========================================
+   MEMORY TIMELINE
+========================================= */
+
+.memory-section {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    padding:
+        130px 20px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   HEADING
+========================================= */
+
+.memory-heading {
+
+    text-align: center;
+
+    max-width: 750px;
+
+    margin:
+        0 auto 100px;
+}
+
+
+.memory-heading > span {
+
+    font-size: 12px;
+
+    letter-spacing: 6px;
+
+    color:
+        rgba(255,255,255,0.45);
+}
+
+
+.memory-heading h2 {
+
+    margin:
+        18px 0;
+
+    font-size:
+        clamp(45px, 8vw, 85px);
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff,
+            #ff5f8a,
+            #fff
+        );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        textShine 4s linear infinite;
+}
+
+
+.memory-heading p {
+
+    color:
+        rgba(255,255,255,0.6);
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================
+   TIMELINE
+========================================= */
+
+.memory-timeline {
+
+    position: relative;
+
+    width: min(1100px, 100%);
+
+    margin: auto;
+}
+
+
+/* Center line */
+
+.memory-timeline::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    bottom: 0;
+
+    left: 50%;
+
+    width: 2px;
+
+    transform:
+        translateX(-50%);
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            #ff174f,
+            #ff174f,
+            transparent
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(255,23,79,0.6);
+}
+
+
+/* =========================================
+   TIMELINE ITEM
+========================================= */
+
+.timeline-item {
+
+    position: relative;
+
+    width: 50%;
+
+    margin-bottom: 100px;
+}
+
+
+.timeline-item.left {
+
+    padding-right: 70px;
+
+    text-align: right;
+}
+
+
+.timeline-item.right {
+
+    margin-left: 50%;
+
+    padding-left: 70px;
+
+    text-align: left;
+}
+
+
+/* =========================================
+   DOT
+========================================= */
+
+.timeline-dot {
+
+    position: absolute;
+
+    top: 40px;
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        #180009;
+
+    border:
+        2px solid #ff174f;
+
+    color:
+        #ff174f;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 0 15px #ff174f,
+        0 0 35px
+        rgba(255,23,79,0.5);
+
+    z-index: 3;
+
+    animation:
+        heartBeat 1.7s infinite;
+}
+
+
+.timeline-item.left
+.timeline-dot {
+
+    right: -21px;
+}
+
+
+.timeline-item.right
+.timeline-dot {
+
+    left: -21px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.timeline-card {
+
+    overflow: hidden;
+
+    border-radius: 25px;
+
+    background:
+        rgba(255,255,255,0.05);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+
+    backdrop-filter:
+        blur(15px);
+
+    cursor: pointer;
+
+    box-shadow:
+        0 15px 50px
+        rgba(0,0,0,0.25);
+
+    transition:
+        transform .6s ease,
+        box-shadow .6s ease,
+        border-color .6s ease;
+}
+
+
+.timeline-card:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    border-color:
+        rgba(255,23,79,0.5);
+
+    box-shadow:
+        0 25px 70px
+        rgba(255,23,79,0.2);
+}
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.timeline-photo {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 350px;
+
+    overflow: hidden;
+}
+
+
+.timeline-photo img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition:
+        transform .8s ease;
+}
+
+
+.timeline-card:hover
+.timeline-photo img {
+
+    transform:
+        scale(1.08);
+}
+
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.timeline-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background:
+        rgba(0,0,0,0.55);
+
+    color: white;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    opacity: 0;
+
+    transition:
+        opacity .5s ease;
+}
+
+
+.timeline-card:hover
+.timeline-overlay {
+
+    opacity: 1;
+}
+
+
+.timeline-overlay span {
+
+    width: 55px;
+
+    height: 55px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border-radius: 50%;
+
+    background:
+        #ff174f;
+
+    font-size: 23px;
+
+    box-shadow:
+        0 0 30px
+        #ff174f;
+}
+
+
+/* =========================================
+   INFO
+========================================= */
+
+.timeline-info {
+
+    padding:
+        25px 28px 30px;
+}
+
+
+.timeline-info small {
+
+    color:
+        #ff5f8a;
+
+    letter-spacing: 3px;
+
+    font-size: 10px;
+}
+
+
+.timeline-info h3 {
+
+    margin:
+        10px 0;
+
+    font-size: 25px;
+}
+
+
+.timeline-info p {
+
+    color:
+        rgba(255,255,255,0.55);
+
+    line-height: 1.7;
+
+    font-size: 15px;
+}
+
+
+/* =========================================
+   CONTINUE
+========================================= */
+
+.timeline-continue {
+
+    display: block;
+
+    margin:
+        30px auto 0;
+
+    padding:
+        15px 30px;
+
+    border:
+        1px solid #ff174f;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,23,79,0.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    transition:
+        .4s ease;
+}
+
+
+.timeline-continue span {
+
+    margin-left: 10px;
+
+    color: #ff5f8a;
+}
+
+
+.timeline-continue:hover {
+
+    background:
+        #ff174f;
+
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,23,79,0.5);
+}
+
+
+/* =========================================
+   MOBILE TIMELINE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .memory-section {
+
+        padding:
+            90px 15px;
+    }
+
+
+    .memory-heading {
+
+        margin-bottom: 70px;
+    }
+
+
+    .memory-timeline::before {
+
+        left: 20px;
+
+        transform: none;
+    }
+
+
+    .timeline-item,
+    .timeline-item.right {
+
+        width: 100%;
+
+        margin-left: 0;
+
+        padding-left: 60px;
+
+        padding-right: 0;
+
+        text-align: left;
+
+        margin-bottom: 70px;
+    }
+
+
+    .timeline-item.left
+    .timeline-dot,
+
+    .timeline-item.right
+    .timeline-dot {
+
+        left: -1px;
+
+        right: auto;
+    }
+
+
+    .timeline-photo {
+
+        height: 300px;
+    }
+
+
+    .timeline-info h3 {
+
+        font-size: 21px;
+    }
+
+}
+/* =========================================
+   FINAL CINEMATIC SECTION
+========================================= */
+
+.final-section {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    overflow: hidden;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #3a0016 0%,
+            #18000b 35%,
+            #050003 70%,
+            #000000 100%
+        );
+}
+
+
+/* =========================================
+   FINAL CONTENT
+========================================= */
+
+.final-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: 90%;
+
+    max-width: 900px;
+
+    padding: 50px 20px;
+
+    animation:
+        finalAppear 1.5s ease both;
+}
+
+
+@keyframes finalAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(50px)
+            scale(.95);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   SMALL TEXT
+========================================= */
+
+.final-small-text {
+
+    font-size: 12px;
+
+    letter-spacing: 6px;
+
+    color:
+        rgba(255,255,255,0.45);
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================================
+   HEART WRAPPER
+========================================= */
+
+.final-heart-wrap {
+
+    position: relative;
+
+    width: 230px;
+
+    height: 230px;
+
+    margin:
+        0 auto 40px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+/* =========================================
+   FINAL HEART
+========================================= */
+
+.final-heart {
+
+    position: relative;
+
+    z-index: 3;
+
+    font-size: 130px;
+
+    color: #ff174f;
+
+    transform-origin: center;
+
+    animation:
+        finalHeartBeat 1.5s
+        ease-in-out
+        infinite;
+
+    text-shadow:
+
+        0 0 10px #ff174f,
+
+        0 0 30px #ff174f,
+
+        0 0 60px #ff174f,
+
+        0 0 100px
+        rgba(255,23,79,0.7);
+}
+
+
+@keyframes finalHeartBeat {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            scale(1.15);
+    }
+}
+
+
+/* =========================================
+   HEART RINGS
+========================================= */
+
+.heart-ring {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    width: 100px;
+
+    height: 100px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,23,79,0.5);
+
+    transform:
+        translate(-50%, -50%);
+
+    opacity: 0;
+
+    animation:
+        heartRing 3s
+        ease-out
+        infinite;
+}
+
+
+.ring-two {
+
+    animation-delay:
+        1s;
+}
+
+
+.ring-three {
+
+    animation-delay:
+        2s;
+}
+
+
+@keyframes heartRing {
+
+    0% {
+
+        width: 100px;
+
+        height: 100px;
+
+        opacity: .8;
+    }
+
+    100% {
+
+        width: 400px;
+
+        height: 400px;
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   FINAL MESSAGE
+========================================= */
+
+.final-message {
+
+    opacity: 0;
+
+    animation:
+        messageReveal 1.5s
+        ease forwards 1s;
+}
+
+
+@keyframes messageReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+.final-message h2 {
+
+    font-size:
+        clamp(45px, 8vw, 90px);
+
+    margin-bottom: 20px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #fff,
+            #ff5c87,
+            #fff
+        );
+
+    background-size: 200%;
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        textShine 4s linear infinite;
+}
+
+
+.final-message p {
+
+    font-size:
+        clamp(16px, 3vw, 21px);
+
+    color:
+        rgba(255,255,255,0.6);
+
+    line-height: 1.8;
+
+    margin: 8px 0;
+}
+
+
+.final-highlight {
+
+    color:
+        #ff6b91 !important;
+
+    font-size:
+        clamp(19px, 4vw, 27px) !important;
+
+    margin-top:
+        20px !important;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,23,79,.5);
+}
+
+
+/* =========================================
+   LINE
+========================================= */
+
+.final-line {
+
+    width: 0;
+
+    height: 1px;
+
+    margin:
+        40px auto;
+
+    background:
+        #ff174f;
+
+    box-shadow:
+        0 0 15px #ff174f;
+
+    animation:
+        lineGrow 1.5s
+        ease forwards 1.5s;
+}
+
+
+@keyframes lineGrow {
+
+    from {
+
+        width: 0;
+    }
+
+    to {
+
+        width: 180px;
+    }
+}
+
+
+/* =========================================
+   MADE WITH LOVE
+========================================= */
+
+.final-love {
+
+    color:
+        rgba(255,255,255,0.65);
+
+    font-size: 16px;
+
+    letter-spacing: 3px;
+
+    opacity: 0;
+
+    animation:
+        fadeUp 1s ease forwards 2s;
+}
+
+
+.final-love span {
+
+    color:
+        #ff174f;
+
+    font-size: 24px;
+
+    margin-left: 8px;
+
+    text-shadow:
+        0 0 15px #ff174f;
+}
+
+
+.final-signature {
+
+    margin-top: 20px;
+
+    color:
+        rgba(255,255,255,0.35);
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    opacity: 0;
+
+    animation:
+        fadeUp 1s ease forwards 2.5s;
+}
+
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   FLOATING HEART PARTICLES
+========================================= */
+
+.final-particles {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+
+.final-particles span {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    color:
+        rgba(255,23,79,0.45);
+
+    font-size:
+        18px;
+
+    animation:
+        floatFinalHeart
+        linear infinite;
+}
+
+
+.final-particles span:nth-child(1) {
+    left: 5%;
+    animation-duration: 8s;
+    animation-delay: 1s;
+}
+
+.final-particles span:nth-child(2) {
+    left: 15%;
+    animation-duration: 11s;
+    animation-delay: 3s;
+}
+
+.final-particles span:nth-child(3) {
+    left: 25%;
+    animation-duration: 9s;
+    animation-delay: 5s;
+}
+
+.final-particles span:nth-child(4) {
+    left: 35%;
+    animation-duration: 13s;
+    animation-delay: 2s;
+}
+
+.final-particles span:nth-child(5) {
+    left: 45%;
+    animation-duration: 10s;
+    animation-delay: 6s;
+}
+
+.final-particles span:nth-child(6) {
+    left: 55%;
+    animation-duration: 12s;
+    animation-delay: 1s;
+}
+
+.final-particles span:nth-child(7) {
+    left: 65%;
+    animation-duration: 9s;
+    animation-delay: 4s;
+}
+
+.final-particles span:nth-child(8) {
+    left: 75%;
+    animation-duration: 11s;
+    animation-delay: 7s;
+}
+
+.final-particles span:nth-child(9) {
+    left: 85%;
+    animation-duration: 8s;
+    animation-delay: 2s;
+}
+
+.final-particles span:nth-child(10) {
+    left: 95%;
+    animation-duration: 14s;
+    animation-delay: 5s;
+}
+
+
+@keyframes floatFinalHeart {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg)
+            scale(.7);
+
+        opacity: 0;
+    }
+
+    15% {
+
+        opacity: 1;
+    }
+
+    80% {
+
+        opacity: .7;
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg)
+            scale(1.4);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .final-heart-wrap {
+
+        width: 190px;
+
+        height: 190px;
+    }
+
+
+    .final-heart {
+
+        font-size: 105px;
+    }
+
+
+    .final-message h2 {
+
+        font-size: 48px;
+    }
+
+
+    .final-small-text {
+
+        letter-spacing: 4px;
+    }
+
+}
+/* =========================================
+   MUSIC BUTTON
+========================================= */
+
+.music-button {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    width: 55px;
+
+    height: 55px;
+
+    border-radius: 50%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.25);
+
+    background:
+        rgba(30,0,12,0.75);
+
+    backdrop-filter:
+        blur(12px);
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 9998;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-shadow:
+        0 0 20px
+        rgba(255,23,79,0.25);
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+
+.music-button:hover {
+
+    transform:
+        scale(1.1);
+
+    background:
+        rgba(255,23,79,0.25);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,23,79,0.5);
+}
+
+
+/* Music playing animation */
+
+.music-button.playing {
+
+    animation:
+        musicPulse 1.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+
+        box-shadow:
+            0 0 15px
+            rgba(255,23,79,0.3);
+    }
+
+    50% {
+
+        box-shadow:
+            0 0 35px
+            rgba(255,23,79,0.7);
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width:600px) {
+
+    .music-button {
+
+        width: 48px;
+
+        height: 48px;
+
+        right: 15px;
+
+        bottom: 15px;
+
+        font-size: 19px;
+    }
+
+}
+/* =========================================
+   HEART INTRO - CINEMATIC POLISH
+========================================= */
+
+#heartIntro::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -20%;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,20,80,0.12),
+            transparent 35%
+        );
+
+    animation:
+        introGlow 4s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+
+@keyframes introGlow {
+
+    0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+
+/* Heart becomes stronger near completion */
+
+#heartPath {
+    animation:
+        drawHeart 10s ease-in-out forwards,
+        heartGlow 1.8s ease-in-out 10s infinite alternate;
+}
+
+
+@keyframes heartGlow {
+
+    0% {
+        filter:
+            drop-shadow(0 0 4px #ff174f)
+            drop-shadow(0 0 10px #ff174f);
+    }
+
+    100% {
+        filter:
+            drop-shadow(0 0 8px #ff174f)
+            drop-shadow(0 0 30px #ff174f)
+            drop-shadow(0 0 60px rgba(255,23,79,.7));
+    }
+}
+
+
+/* Completed-heart pulse */
+
+#heartIntro.finished #heartPath {
+
+    animation:
+        completedHeart 1.3s ease-in-out infinite;
+}
+
+
+@keyframes completedHeart {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.035);
+    }
+}
+
+
+/* =========================================
+   EXTRA HEART PARTICLES
+========================================= */
+
+#heartIntro::after {
+
+    content:
+        "♥   ·   ♥   ·   ♥   ·   ♥";
+
+    position: absolute;
+
+    width: 100%;
+
+    text-align: center;
+
+    bottom: 4%;
+
+    color:
+        rgba(255,23,79,0.35);
+
+    font-size: 13px;
+
+    letter-spacing: 10px;
+
+    animation:
+        particleText 5s ease-in-out infinite;
+}
+
+
+@keyframes particleText {
+
+    0%, 100% {
+        opacity: .2;
+        transform: translateY(5px);
+    }
+
+    50% {
+        opacity: .8;
+        transform: translateY(-5px);
+    }
+}
+
+
+/* =========================================
+   CINEMATIC EXIT
+========================================= */
+
+#heartIntro.exit {
+
+    opacity: 0;
+
+    transform:
+        scale(1.18);
+
+    filter:
+        blur(8px);
+
+    transition:
+        opacity 1.8s ease,
+        transform 1.8s ease,
+        filter 1.8s ease;
+}
