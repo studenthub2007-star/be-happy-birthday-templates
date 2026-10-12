@@ -1,0 +1,1195 @@
+/* ==================================
+   MADAM JII ❤️ — TEMPLATE 5
+================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #ff4f91;
+    --light-pink: #ff9fc5;
+    --dark: #0b0610;
+    --white: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--dark);
+    color: var(--white);
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* INTRO SCREEN */
+
+#intro {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #321027 0%,
+            #160b1d 45%,
+            #08050c 100%
+        );
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+#intro.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.heart {
+    font-size: clamp(80px, 15vw, 140px);
+    animation: heartbeat 1.2s infinite;
+    filter: drop-shadow(0 0 30px rgba(255, 79, 145, 0.65));
+}
+
+.intro-text {
+    max-width: 550px;
+    margin-top: 25px;
+    color: #d8c4d5;
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+
+#intro h1 {
+    margin: 18px 0 28px;
+    font-size: clamp(32px, 6vw, 60px);
+    background: linear-gradient(90deg, #fff, #ff78b0, #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+#openButton,
+#surpriseButton {
+    border: none;
+    border-radius: 50px;
+    padding: 15px 28px;
+
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+
+    background: linear-gradient(135deg, #ff4f91, #e82770);
+    box-shadow: 0 10px 35px rgba(255, 47, 112, 0.3);
+
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#openButton:hover,
+#surpriseButton:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(255, 47, 112, 0.5);
+}
+
+/* MAIN BIRTHDAY PAGE */
+
+#birthdayPage {
+    position: relative;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 100px 22px;
+    text-align: center;
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+#birthdayPage.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#birthdayPage::before {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    top: 10%;
+    left: -150px;
+    border-radius: 50%;
+    background: rgba(255, 47, 112, 0.12);
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+#birthdayPage::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    right: -150px;
+    bottom: 5%;
+    border-radius: 50%;
+    background: rgba(168, 65, 255, 0.12);
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.badge {
+    position: relative;
+    z-index: 1;
+
+    padding: 10px 18px;
+    margin-bottom: 25px;
+
+    border: 1px solid rgba(255, 79, 145, 0.35);
+    border-radius: 50px;
+
+    background: rgba(255, 79, 145, 0.08);
+    color: var(--light-pink);
+
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+#birthdayPage h1 {
+    position: relative;
+    z-index: 1;
+
+    font-size: clamp(42px, 8vw, 85px);
+    line-height: 1.15;
+    letter-spacing: -2px;
+}
+
+#birthdayPage h2 {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 15px;
+    font-size: clamp(35px, 6vw, 65px);
+
+    background: linear-gradient(90deg, #ffb3d1, #ff4f91, #ffd2e4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.message {
+    position: relative;
+    z-index: 1;
+
+    max-width: 600px;
+    margin: 25px auto 30px;
+
+    color: #bdb1c5;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+#surpriseButton {
+    position: relative;
+    z-index: 1;
+}
+
+#surpriseMessage {
+    position: relative;
+    z-index: 1;
+
+    max-width: 600px;
+    margin-top: 30px;
+
+    color: var(--light-pink);
+    font-size: 17px;
+    line-height: 1.8;
+
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 0.5s;
+}
+
+#surpriseMessage.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* FLOATING HEARTS */
+
+.floating-heart {
+    position: fixed;
+    bottom: -50px;
+    z-index: 5;
+
+    pointer-events: none;
+    animation: floatUp linear forwards;
+}
+
+/* ANIMATIONS */
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.13);
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-115vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    #birthdayPage {
+        padding: 80px 20px;
+    }
+
+    #birthdayPage h1 {
+        letter-spacing: -1px;
+    }
+
+    .message {
+        font-size: 14px;
+    }
+
+    .intro-text {
+        font-size: 13px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+/* =================================
+   MADAM JII MUSIC PLAYER
+================================= */
+
+.music-section {
+    position: relative;
+    z-index: 2;
+
+    width: min(600px, 100%);
+    margin-top: 65px;
+    padding: 35px 25px;
+
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 79, 145, 0.22);
+    border-radius: 28px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+}
+
+.music-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+    animation: heartbeat 1.5s infinite;
+}
+
+.music-label {
+    color: #ff75a8;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.music-section h2 {
+    font-size: 26px !important;
+    margin-bottom: 12px;
+}
+
+.music-description {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 22px;
+}
+
+.music-button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 50px;
+
+    background: linear-gradient(135deg, #ff4f91, #e82770);
+    color: white;
+
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.music-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 79, 145, 0.35);
+}
+
+#musicStatus {
+    margin-top: 18px;
+    color: #bbaaba;
+    font-size: 12px;
+}
+/* =================================
+   MADAM JII MEMORIES GALLERY
+================================= */
+
+.memories-section {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    padding: 80px 5%;
+}
+
+.memories-heading {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.memories-label {
+    color: #ff75a8;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.memories-heading h2 {
+    color: #fff;
+    font-size: clamp(30px, 5vw, 48px);
+    margin-bottom: 18px;
+}
+
+.memories-description {
+    color: #bdb1c5;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.memories-gallery {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.memory-card {
+    position: relative;
+    height: 320px;
+
+    overflow: hidden;
+    border-radius: 20px;
+
+    background: #1b1020;
+    border: 1px solid rgba(255, 79, 145, 0.2);
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.memory-card:hover {
+    transform: translateY(-7px);
+    border-color: #ff4f91;
+    box-shadow: 0 20px 45px rgba(255, 79, 145, 0.18);
+}
+
+.memory-card img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+
+    transition: transform 0.7s ease;
+}
+
+.memory-card:hover img {
+    transform: scale(1.08);
+}
+
+.memory-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    padding: 25px 15px 18px;
+
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+
+    background: linear-gradient(
+        transparent,
+        rgba(10, 5, 15, 0.9)
+    );
+}
+
+@media (max-width: 850px) {
+    .memories-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .memory-card {
+        height: 280px;
+    }
+}
+
+@media (max-width: 520px) {
+    .memories-section {
+        padding: 60px 20px;
+    }
+
+    .memories-gallery {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .memory-card {
+        height: 350px;
+    }
+}
+/* =========================================
+   MADAM JII ❤️ — LETTER SECTION FIX
+========================================= */
+
+.letter-section {
+    position: relative;
+    z-index: 2;
+    padding: 90px 20px 110px;
+    text-align: center;
+    overflow: visible;
+}
+
+.letter-label {
+    color: #ff75a8;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.letter-section > h2 {
+    color: white;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.3;
+    margin-bottom: 15px;
+}
+
+.letter-description {
+    color: #bdb1c5;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+/* Envelope area */
+.envelope-container {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    height: 330px;
+    margin: 0 auto 20px;
+    perspective: 1000px;
+    overflow: visible;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    margin-top: 30px;
+    background: #ff6b9d;
+    border-radius: 8px;
+    box-shadow: 0 20px 50px rgba(255, 79, 145, 0.25);
+    transform-style: preserve-3d;
+}
+
+/* Back of envelope */
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #ff8db5;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+/* Letter — closed position */
+.letter-paper {
+    position: absolute;
+    left: 5%;
+    top: 10px;
+    width: 90%;
+    height: 195px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 22px 18px;
+    color: #4b2438;
+    background: #fff5f8;
+    border-radius: 6px;
+    text-align: left;
+
+    transform: translateY(0);
+    opacity: 1;
+    z-index: 2;
+
+    transition:
+        top 0.8s ease,
+        height 0.8s ease,
+        transform 0.8s ease;
+}
+
+.letter-paper h3 {
+    font-size: 19px;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.letter-paper p {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.letter-ending {
+    font-weight: bold;
+    color: #c52e70;
+}
+
+/* Envelope flap */
+.envelope-flap {
+    position: absolute;
+    inset: 0;
+    background: #ffb0cb;
+    clip-path: polygon(0 0, 100% 0, 50% 58%);
+    transform-origin: top;
+    transition: transform 0.7s ease;
+    z-index: 5;
+}
+
+/* Envelope front */
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    background: #ff6b9d;
+    clip-path: polygon(
+        0 100%,
+        0 0,
+        50% 58%,
+        100% 0,
+        100% 100%
+    );
+    z-index: 4;
+}
+
+/* Heart */
+.envelope-heart {
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 38px;
+    z-index: 6;
+    transition: opacity 0.4s ease;
+}
+
+/* Open envelope */
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope.open .envelope-heart {
+    opacity: 0;
+}
+
+/* Letter comes OUT of the envelope */
+.envelope.open .letter-paper {
+    top: -180px;
+    height: 390px;
+    overflow-y: auto;
+    z-index: 7;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+}
+
+/* Open/close button */
+.letter-button {
+    position: relative;
+    z-index: 20;
+    display: inline-block;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    background: linear-gradient(135deg, #ff4f91, #e82770);
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.letter-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 79, 145, 0.35);
+}
+
+.letter-hint {
+    margin-top: 18px;
+    color: #c0adca;
+    font-size: 12px;
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+    .letter-section {
+        padding: 70px 15px 100px;
+    }
+
+    .envelope-container {
+        max-width: 310px;
+        height: 320px;
+    }
+
+    .letter-paper {
+        padding: 18px 14px;
+    }
+
+    .envelope.open .letter-paper {
+        top: -170px;
+        height: 370px;
+    }
+
+    .letter-button {
+        font-size: 14px;
+        padding: 13px 23px;
+    }
+}
+/* =================================
+   MADAM JII — CAKE CELEBRATION
+================================= */
+
+.cake-section {
+    position: relative;
+    z-index: 2;
+    padding: 90px 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.cake-label {
+    color: #ff75a8;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.cake-section h2 {
+    color: white;
+    font-size: clamp(30px, 5vw, 46px);
+    margin-bottom: 15px;
+}
+
+.cake-description {
+    max-width: 550px;
+    margin: 0 auto;
+    color: #bdb1c5;
+    line-height: 1.8;
+}
+
+.cake-scene {
+    position: relative;
+    width: 280px;
+    height: 250px;
+    margin: 45px auto 25px;
+}
+
+.cake-bottom {
+    position: absolute;
+    left: 20px;
+    bottom: 35px;
+    width: 240px;
+    height: 90px;
+    background: linear-gradient(90deg, #d82f77, #ff82b5, #d82f77);
+    border-radius: 12px 12px 20px 20px;
+}
+
+.cake-middle {
+    position: absolute;
+    left: 35px;
+    bottom: 120px;
+    width: 210px;
+    height: 55px;
+    background: #ffb4d0;
+    border-radius: 12px 12px 5px 5px;
+}
+
+.cake-top {
+    position: absolute;
+    left: 35px;
+    bottom: 160px;
+    width: 210px;
+    height: 35px;
+    border-radius: 50%;
+    background: #ffe3ee;
+    border: 4px solid #ff9fc5;
+    z-index: 2;
+}
+
+.cake-plate {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    width: 280px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(#f8e7f0, #bca3bb);
+}
+
+.cake-candle {
+    position: absolute;
+    left: 132px;
+    bottom: 190px;
+    width: 16px;
+    height: 42px;
+    z-index: 5;
+}
+
+.candle-stick {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background: repeating-linear-gradient(
+        45deg,
+        #fff,
+        #fff 5px,
+        #ff4f91 5px,
+        #ff4f91 10px
+    );
+}
+
+.candle-flame {
+    position: absolute;
+    top: -22px;
+    left: 3px;
+    width: 10px;
+    height: 18px;
+    background: #ffcc57;
+    border-radius: 50% 50% 45% 45%;
+    box-shadow: 0 0 20px #ff9d35;
+    animation: candleFlicker 0.7s infinite alternate;
+    transform-origin: bottom;
+}
+
+.candle-flame.extinguished {
+    display: none;
+}
+
+.cake-message {
+    min-height: 30px;
+    margin: 20px auto;
+    color: #ff9fc5;
+    font-size: 16px;
+}
+
+.cake-button {
+    position: relative;
+    z-index: 5;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #ff4f91, #e82770);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cake-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(255, 79, 145, 0.35);
+}
+
+#fireworksLayer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.firework {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff9fc5;
+    box-shadow:
+        0 0 12px #ff4f91,
+        0 0 24px #ff4f91;
+    animation: fireworkBurst 1.1s ease-out forwards;
+}
+
+@keyframes candleFlicker {
+    from {
+        transform: scale(1) rotate(-4deg);
+    }
+
+    to {
+        transform: scale(1.12) rotate(4deg);
+    }
+}
+
+@keyframes fireworkBurst {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(0.2);
+    }
+}
+
+@media (max-width: 400px) {
+    .cake-scene {
+        transform: scale(0.9);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+}
+/* ==================================
+   MADAM JII — INFINITE MOVING GALLERY
+================================== */
+
+.moving-gallery-section {
+    padding: 90px 0;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.moving-gallery-section .photo-label {
+    color: #ff75a8;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.moving-gallery-section h2 {
+    color: white;
+    font-size: clamp(30px, 5vw, 46px);
+    margin-bottom: 15px;
+}
+
+.gallery-description {
+    color: #bdb1c5;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+    line-height: 1.8;
+}
+
+.moving-gallery {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 5%,
+        black 95%,
+        transparent
+    );
+
+    mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 5%,
+        black 95%,
+        transparent
+    );
+}
+
+.moving-track {
+    display: flex;
+    width: max-content;
+    gap: 25px;
+    padding: 20px 0;
+
+    animation: movePhotos 35s linear infinite;
+}
+
+.moving-gallery:hover .moving-track {
+    animation-play-state: paused;
+}
+
+.moving-photo {
+    position: relative;
+    flex-shrink: 0;
+
+    width: 260px;
+    height: 340px;
+
+    padding: 8px;
+    border-radius: 24px;
+
+    background: linear-gradient(
+        135deg,
+        #ffb8d6,
+        #ff4f91,
+        #9d4edd
+    );
+
+    box-shadow:
+        0 0 20px rgba(255, 79, 145, 0.25),
+        0 15px 35px rgba(0, 0, 0, 0.3);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+.moving-photo:hover {
+    transform: translateY(-12px) scale(1.04);
+
+    box-shadow:
+        0 0 35px rgba(255, 79, 145, 0.55),
+        0 20px 45px rgba(0, 0, 0, 0.4);
+}
+
+.moving-photo img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: cover;
+
+    border-radius: 18px;
+}
+
+.moving-photo span {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+
+    padding: 35px 10px 18px;
+
+    border-radius: 0 0 18px 18px;
+
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+
+    background: linear-gradient(
+        transparent,
+        rgba(10, 5, 15, 0.9)
+    );
+}
+
+@keyframes movePhotos {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .moving-photo {
+        width: 210px;
+        height: 290px;
+    }
+
+    .moving-track {
+        gap: 18px;
+        animation-duration: 28s;
+    }
+}
+
+/* Respect reduced-motion preference */
+
+@media (prefers-reduced-motion: reduce) {
+    .moving-track {
+        animation: none;
+    }
+}
+/* ===================================
+   FINAL LETTER OVERLAP FIX ❤️
+=================================== */
+
+.letter-section {
+    position: relative;
+    isolation: isolate;
+    padding: 80px 20px 120px;
+    text-align: center;
+    overflow: visible;
+}
+
+/* Heading stays above the envelope */
+.letter-section > h2 {
+    position: relative;
+    z-index: 15;
+    font-size: clamp(30px, 5vw, 48px);
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+/* Description */
+.letter-description {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 35px;
+}
+
+/* Envelope positioning */
+.envelope-container {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 380px;
+    height: 300px;
+    margin: 0 auto 25px;
+    perspective: 1000px;
+    overflow: visible;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    margin-top: 0;
+    isolation: auto;
+}
+
+/* Letter stays inside while closed */
+.envelope .letter-paper {
+    position: absolute;
+    top: 10px;
+    left: 5%;
+    width: 90%;
+    height: 195px;
+    min-height: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 22px 18px;
+    border-radius: 7px;
+    background: #fff5f8;
+    color: #4b2438;
+    text-align: left;
+    transform: none;
+    opacity: 1;
+    z-index: 2;
+    transition: top 0.8s ease, height 0.8s ease;
+}
+
+/* Letter moves above the envelope when opened */
+.envelope.open .letter-paper {
+    top: -190px;
+    left: 5%;
+    width: 90%;
+    height: 390px;
+    overflow-y: auto;
+    z-index: 7;
+    transition-delay: 0.2s;
+}
+
+/* Flap opens */
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+/* Hide envelope heart */
+.envelope.open .envelope-heart {
+    opacity: 0;
+}
+
+/* Button stays visible and clickable */
+.letter-button {
+    position: relative;
+    z-index: 20;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/* Mobile adjustments */
+@media (max-width: 500px) {
+    .letter-section {
+        padding: 60px 15px 100px;
+    }
+
+    .letter-section > h2 {
+        font-size: 32px;
+    }
+
+    .envelope-container {
+        max-width: 310px;
+        height: 300px;
+    }
+
+    .envelope.open .letter-paper {
+        top: -170px;
+        height: 370px;
+    }
+}
